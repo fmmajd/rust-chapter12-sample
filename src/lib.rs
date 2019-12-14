@@ -2,6 +2,8 @@ use std::fs;
 use std::error::Error;
 use std::env;
 
+/// the main function of the program
+/// processes the input, and produces the outputs
 pub fn run(config: Config) -> Result<(), Box<dyn Error>> { //no & because we want to own config from now on
     let content = fs::read_to_string(config.filename)?;
 
@@ -18,6 +20,7 @@ pub fn run(config: Config) -> Result<(), Box<dyn Error>> { //no & because we wan
     Ok(())
 }
 
+/// the Config struct holds the input values
 pub struct Config {
     pub query: String,
     pub filename: String,
@@ -48,6 +51,7 @@ impl Config {
     }
 }
 
+/// searches the given text for the search query and returns the lines containing it
 pub fn search<'a>(query: &str, contents: &'a str) -> Vec<&'a str>
 {
     contents.lines()
